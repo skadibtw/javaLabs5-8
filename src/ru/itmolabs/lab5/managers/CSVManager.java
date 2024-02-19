@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Обработчик CSV файлов
- * readFromFile - чтение файла
- * write - запись в файл
+ *
+ * 
  */
 
 public class CSVManager{

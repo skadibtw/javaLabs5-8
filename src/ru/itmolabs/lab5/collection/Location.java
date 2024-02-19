@@ -53,7 +53,7 @@ public class Location {
 
     @Override
     public String toString(){
-        return "x: " + this.x + "\ny: " + this.y + "\nz: " + this.z + "\nname: " + this.name;
+        return "(" + x + "; " + y + "; " + z + ") " + "name: " + this.name;
     }
 }
 

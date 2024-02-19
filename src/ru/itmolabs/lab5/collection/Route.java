@@ -1,8 +1,11 @@
 package ru.itmolabs.lab5.collection;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayDeque;
+import ru.itmolabs.lab5.managers.CollectionManager;
 
 public class Route {
+    private static long newId = 1;
     private long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -11,13 +14,14 @@ public class Route {
     private Location to; //Поле не может быть null
     private double distance; //Значение поля должно быть больше 1
     public Route(String name, Coordinates coordinates, Location from, Location to, double distance) {
-         this.id = generateID();
+         this.id = newId;
          this.name = name;
          this.coordinates = coordinates;
          this.creationDate = java.time.ZonedDateTime.now();
          this.from = from;
          this.to = to;
          this.distance = distance;
+         newId++;
     }
 
     public long getId() {
@@ -76,9 +80,7 @@ public class Route {
         this.distance = distance;
     }
 
-    private long generateID(){
-        return 0;
-    }
+
     @Override
     public String toString(){
         return "id: " + this.id + "\nname: " + this.name + "\ncoordinates: " +
