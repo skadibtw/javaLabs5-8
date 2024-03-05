@@ -32,6 +32,6 @@ public class RemoveById extends Command {
 			return new ExecutionResponse(false, "Не существующий ID");
 		collectionManager.remove(id);
 		collectionManager.update();
-		return new ExecutionResponse("Дракон успешно удалён!");
+		return new ExecutionResponse("Маршрут успешно удалён!");
 	}
 }
