@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 /**
- * Оперирует коллекцией.
+ * Класс, который обрабатывает коллекцию.
  * @author skadibtw
  */
 public class CollectionManager {
@@ -54,12 +54,12 @@ public class CollectionManager {
 	}
 
 	/**
-	 * Получить дракона по ID
+	 * Получить маршрут по ID
 	 */
 	public Route byId(Long id) { return routes.get(id); }
 
 	/**
-	 * Содержит ли колекции дракона
+	 * Содержит ли колекции маршруты
 	 */
 	public boolean isСontain(Route e) { return e == null || byId(e.getId()) != null; }
 

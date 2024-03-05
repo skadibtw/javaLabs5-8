@@ -1,0 +1,299 @@
+@startuml
+class utility.StandardConsole {
+- {static} String P1
+- {static} Scanner fileScanner
+- {static} Scanner defScanner
++ void print(Object)
++ void println(Object)
++ void printError(Object)
++ String readln()
++ boolean isCanReadln()
++ void printTable(Object,Object)
++ void prompt()
++ String getPrompt()
++ void selectFileScanner(Scanner)
++ void selectConsoleScanner()
+}
+
+
+class models.Route {
+- Long id
+- String name
+- Coordinates coordinates
+- ZonedDateTime creationDate
+- Location from
+- Location to
+- double distance
++ Long getId()
++ String getName()
++ Coordinates getCoordinates()
++ ZonedDateTime getCreationDate()
++ Location getFrom()
++ Location getTo()
++ Double getDistance()
++ boolean validate()
++ String toString()
++ {static} Route fromArray(String[])
++ {static} String[] toArray(Route)
++ int compareTo(Route)
+}
+
+
+class models.Location {
+- Float x
+- Double y
+- float z
+- String name
++ boolean validate()
++ String toString()
+}
+
+
+class commands.PrintUniqueDistance {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+abstract class commands.Command {
+- String name
+- String description
++ String getName()
++ String getDescription()
++ boolean equals(Object)
++ int hashCode()
++ String toString()
++ {abstract}ExecutionResponse apply(String[])
+}
+
+
+class commands.Info {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.Save {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.RemoveById {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.RemoveHead {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+interface utility.Console {
+~ void print(Object)
+~ void println(Object)
+~ String readln()
+~ boolean isCanReadln()
+~ void printError(Object)
+~ void printTable(Object,Object)
+~ void prompt()
+~ String getPrompt()
+~ void selectFileScanner(Scanner)
+~ void selectConsoleScanner()
+}
+
+class utility.ExecutionResponse {
+- boolean exitCode
+- String message
++ boolean getExitCode()
++ String getMessage()
++ String toString()
+}
+
+
+class commands.Show {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class managers.CollectionManager {
+- long currentId
+- Map<Long,Route> routes
+- ArrayDeque<Route> collection
+- LocalDateTime lastInitTime
+- LocalDateTime lastSaveTime
+- DumpManager dumpManager
++ ArrayDeque<Route> getCollection()
++ LocalDateTime getLastInitTime()
++ LocalDateTime getLastSaveTime()
++ void saveCollection()
++ Route byId(Long)
++ boolean isСontain(Route)
++ long getFreeId()
++ boolean add(Route)
++ boolean remove(long)
++ void update()
++ boolean loadCollection()
++ String toString()
+}
+
+
+class models.Ask {
++ {static} Route askRoute(Console,long)
++ {static} Coordinates askCoordinates(Console)
++ {static} Location askLocation(Console)
+}
+
+class models.Ask$AskBreak {
+}
+class commands.AddIfMin {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+interface utility.Validatable {
+~ boolean validate()
+}
+
+class commands.Help {
+- Console console
+- CommandManager commandManager
++ ExecutionResponse apply(String[])
+}
+
+
+class Main {
++ {static} void main(String[])
+}
+
+class commands.History {
+- Console console
+- CommandManager commandManager
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.CountLessThanDistance {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class models.Coordinates {
+- int x
+- double y
++ boolean validate()
++ String toString()
+}
+
+
+class managers.CommandManager {
+- Map<String,Command> commands
+- List<String> commandHistory
++ void register(String,Command)
++ Map<String,Command> getCommands()
++ List<String> getCommandHistory()
++ void addToHistory(String)
+}
+
+
+class commands.ExecuteScript {
+- Console console
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.RemoveAnyByDistance {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class utility.Runner {
+- Console console
+- CommandManager commandManager
+- List<String> scriptStack
+- int lengthRecursion
++ void interactiveMode()
+- boolean checkRecursion(String,Scanner)
+- ExecutionResponse scriptMode(String)
+- ExecutionResponse launchCommand(String[])
+}
+
+
+class commands.Exit {
+- Console console
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.Update {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.Add {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class commands.Clear {
+- Console console
+- CollectionManager collectionManager
++ ExecutionResponse apply(String[])
+}
+
+
+class managers.DumpManager {
+- String fileName
+- Console console
+- String collection2CSV(Collection<Route>)
++ void writeCollection(Collection<Route>)
+- ArrayDeque<Route> CSV2collection(String)
++ void readCollection(Collection<Route>)
+}
+
+
+
+
+utility.Console <|.. utility.StandardConsole
+models.Comparable <|.. models.Route
+utility.Validatable <|.. models.Route
+utility.Validatable <|.. models.Location
+commands.Command <|-- commands.PrintUniqueDistance
+commands.Command <|-- commands.Info
+commands.Command <|-- commands.Save
+commands.Command <|-- commands.RemoveById
+commands.Command <|-- commands.RemoveHead
+commands.Command <|-- commands.Show
+models.Ask +.. models.Ask$AskBreak
+models.Exception <|-- models.Ask$AskBreak
+commands.Command <|-- commands.AddIfMin
+commands.Command <|-- commands.Help
+commands.Command <|-- commands.History
+commands.Command <|-- commands.CountLessThanDistance
+utility.Validatable <|.. models.Coordinates
+commands.Command <|-- commands.ExecuteScript
+commands.Command <|-- commands.RemoveAnyByDistance
+commands.Command <|-- commands.Exit
+commands.Command <|-- commands.Update
+commands.Command <|-- commands.Add
+commands.Command <|-- commands.Clear
+@enduml

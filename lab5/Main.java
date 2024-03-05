@@ -7,21 +7,12 @@ import managers.DumpManager;
 import utility.StandardConsole;
 import utility.Runner;
 
-import java.util.ArrayDeque;
-
-/*
-I HATE JAVA LANG AND JVM AND JAVASCRIPT AND ANYTHING ELSE THAT CONTAINS JAVA IN ITS NAME
-THE ONLY GOOD PRODUCT WRITTEN IN JAVA IS MINECRAFT
- */
-// TODO update command fix, add_if_min realisation, remove_any_by_distance realisation, count_less_than_distance realisation
-// TODO print_unique_distance fix javadoc
-// TODO add methods to coordinates and location,
 public class Main {
 	public static void main(String[] args) {
 		var console = new StandardConsole();
 
 		if (args.length == 0) {
-			console.println("Введите имя загружаемого файла как аргумент командной строки");
+			console.println("Укажите файл с вашей коллекцией как аргумент командной строки!");
 			System.exit(1);
 		}
 		
@@ -44,6 +35,12 @@ public class Main {
 			register("execute_script", new ExecuteScript(console));
 			register("exit", new Exit(console));
 			register("remove_head", new RemoveHead(console, collectionManager));
+			register("add_if_min", new AddIfMin(console, collectionManager));
+			register("print_unique_distance", new PrintUniqueDistance(console, collectionManager));
+			register("count_less_than_distance", new CountLessThanDistance(console, collectionManager));
+			register("remove_any_by_distance", new RemoveAnyByDistance(console, collectionManager));
+
+
 
 		}};
 		

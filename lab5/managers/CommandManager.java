@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Управляет командами.
+ * Класс, занимающийся управлением командами.
  * @author skadibtw
  */
 public class CommandManager {

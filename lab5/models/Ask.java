@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 
 /**
- * Класс чтения объекта
+ * Класс, предназначенный для чтения объекта из терминала или скрипта.
  * @author skadibtw
  */
 public class Ask {

@@ -3,10 +3,13 @@ package commands;
 import managers.CommandManager;
 import utility.Console;
 import utility.ExecutionResponse;
-import java.util.stream.Collectors;
+import java.util.List;
+
+
+import java.util.Collections;
 
 /**
- * Команда 'history'. Вывыодит историю команд.
+ * Команда 'history'. Выводит историю последних 7 команд.
  * @author skadibtw
  */
 public class History extends Command {
@@ -14,7 +17,7 @@ public class History extends Command {
 	private final CommandManager commandManager;
 
 	public History(Console console, CommandManager commandManager) {
-		super("history", "Вывыодит историю команд");
+		super("history", "вывести последние 7 команд (без их аргументов)");
 		this.console = console;
 		this.commandManager = commandManager;
 	}
@@ -26,7 +29,18 @@ public class History extends Command {
 	@Override
 	public ExecutionResponse apply(String[] arguments) {
 		if (!arguments[1].isEmpty()) return new ExecutionResponse(false, "Неправильное количество аргументов!\nИспользование: '" + getName() + "'");
-		
-		return new ExecutionResponse(commandManager.getCommandHistory().stream().map(command -> " " + command).collect(Collectors.joining("\n")));
+		StringBuilder stringBuilder = new StringBuilder();
+		List<String> reversed_commands = commandManager.getCommandHistory();
+		Collections.reverse(reversed_commands);
+        int counter = 0;
+		for (var e : reversed_commands) {
+			if (counter == 7) {
+				break;
+			}
+			stringBuilder.append(e).append("\n");
+			counter++;
+		}
+
+		return new ExecutionResponse(stringBuilder.toString());
 	}
 }

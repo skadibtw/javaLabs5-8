@@ -5,7 +5,7 @@ import java.lang.IllegalStateException;
 import java.util.Scanner;
 
 /**
- * Для ввода команд и вывода результата
+ * Класс, занимающийся вводом/выводом результата
  * @author skadibtw
  */
 public class StandardConsole implements Console {

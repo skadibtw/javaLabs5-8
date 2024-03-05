@@ -5,7 +5,7 @@ import utility.Console;
 import utility.ExecutionResponse;
 
 /**
- * Команда 'remove_last'. Удаляет элемент из коллекции.
+ * Команда 'remove_head'. Удаляет первый элемент из коллекции.
  * @author skadibtw
  */
 public class RemoveHead extends Command {
@@ -13,7 +13,7 @@ public class RemoveHead extends Command {
 	private final CollectionManager collectionManager;
 
 	public RemoveHead(Console console, CollectionManager collectionManager) {
-		super("remove_last", "удалить последний элемент из коллекции");
+		super("remove_head", "удалить первый элемент из коллекции");
 		this.console = console;
 		this.collectionManager = collectionManager;
 	}

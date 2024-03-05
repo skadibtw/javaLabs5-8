@@ -10,7 +10,7 @@ import models.Route;
 import utility.Console;
 
 /**
- * Использует файл для сохранения и загрузки коллекции.
+ * Класс, взаимодействующий с CSV-файлами. Также занимается обработкой информации перед записью и обработкой материалов после чтения.
  * @author skadibtw
  */
 public class DumpManager {
@@ -24,7 +24,7 @@ public class DumpManager {
 
 	/**
 	 * Преобразует коллекцию в CSV-строку.
-	 * @param коллекция
+	 * @param collection коллекция
 	 * @return CSV-строка
 	 */
 	private String collection2CSV(Collection<Route> collection) {
@@ -73,7 +73,7 @@ public class DumpManager {
 	/**
 	 * Преобразует CSV-строку в коллекцию.
 	 * @param CSV-строка
-	 * @return коллекция
+	 * @return collection коллекция
 	 */
 	private ArrayDeque<Route> CSV2collection(String s) {
 		try {

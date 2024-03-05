@@ -43,10 +43,10 @@ public class Update extends Command {
 				collectionManager.update();
 				return new ExecutionResponse("Обновлено!");
 			} else {
-				return new ExecutionResponse(false, "Поля Маршрута не валидны! Маршрут не был создан!");
+				return new ExecutionResponse(false, "Поля маршрута не валидны! Маршрут не был создан!");
 			}
 		} catch (Ask.AskBreak e) {
-			return new ExecutionResponse(false, "Поля Маршрута не валидны! Маршрут не был создан!");
+			return new ExecutionResponse(false, "Поля маршрута не валидны! Маршрут не был создан!");
 		}
 	}
 }
